@@ -17,6 +17,7 @@ import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
  * @author Administrator
  *
  */
+@SuppressWarnings("restriction")
 public class JavaBeanToXmlUtil {
 
 	public static String convertToXml(Object obj, String encoding){
