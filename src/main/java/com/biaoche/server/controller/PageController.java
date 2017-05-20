@@ -10,7 +10,6 @@ public class PageController {
 	public String login(){
 		return "login";
 	}
-	
 	@RequestMapping("/index")
 	public String index(){
 		return "index";
@@ -18,5 +17,9 @@ public class PageController {
 	@RequestMapping("/header")
 	public String header(){
 		return "header";
+	}
+	@RequestMapping("/flot")
+	public String flot(){
+		return "flot";
 	}
 }
