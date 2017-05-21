@@ -8,9 +8,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 
-import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
-
-//import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
+import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
 
 /**
  * 消息处理工具类
@@ -18,6 +16,7 @@ import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
  * @author Administrator
  *
  */
+@SuppressWarnings("restriction")
 public class MsgUtil {
 	public static String convertToXml(Object obj, String encoding){
 		String result = null;
