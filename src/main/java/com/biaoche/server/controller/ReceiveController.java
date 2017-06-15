@@ -33,6 +33,7 @@ public class ReceiveController {
 	@RequestMapping(value="/connectServer",method=RequestMethod.POST)
 	public String receiveTextMsg(@RequestBody ReceiveMessage receiveMsg){
 		String sendMsg = receiveService.dealReceiveMsg(receiveMsg);
+		System.out.println(sendMsg);
 		if(StringUtils.isEmpty(sendMsg)){
 			return "接收消息成功";
 		}

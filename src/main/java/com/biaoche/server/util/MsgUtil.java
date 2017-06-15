@@ -1,16 +1,18 @@
 package com.biaoche.server.util;
 
-import java.io.IOException;
 import java.io.StringWriter;
-import java.io.Writer;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 
-import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
-
-//import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
+import com.biaoche.server.pojo.resp.BaseMessage;
 
 /**
  * 消息处理工具类
@@ -19,29 +21,45 @@ import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
  *
  */
 public class MsgUtil {
-	public static String convertToXml(Object obj, String encoding){
-		String result = null;
+	public static String convertToXml(BaseMessage obj, String encoding){
+		Document document = DocumentHelper.createDocument();
+        //创建root
+        Element root = document.addElement("xml");
         try {
-            JAXBContext context = JAXBContext.newInstance(obj.getClass());
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.setProperty(Marshaller.JAXB_ENCODING, encoding);
-            //去掉生成xml的默认报文头。
-            marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
-            //转换所有的适配字符，包括xml实体字符&lt;和&gt;，xml实体字符在好多处理xml的框架中是处理不了的，除非序列化。
-			marshaller.setProperty("com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler",new CharacterEscapeHandler() {
-                @Override
-                public void escape(char[] ch, int start,int length, boolean isAttVal,Writer writer) throws IOException {
-                    writer.write(ch, start, length);
+            Class<? extends BaseMessage> aClass = obj.getClass();
+            List<Field> fields = getDeclaredFields(aClass);
+            System.out.println(fields.size());
+            for (Field field : fields) {
+                Element element = root.addElement(field.getName());
+                if (field.getType().getName().equals("java.lang.String")) {
+                    Method method = aClass.getMethod("get" + field.getName());
+                    element.addCDATA((String) method.invoke(obj));
+                } else {
+                    Method method = aClass.getMethod("get" + field.getName());
+                    element.addText(method.invoke(obj).toString());
                 }
-            });
-            StringWriter writer = new StringWriter();
-            marshaller.marshal(obj, writer);
-            result = writer.toString();
-        } catch (JAXBException e) {
+            }
+            OutputFormat outputFormat = OutputFormat.createPrettyPrint();
+            StringWriter stringWriter = new StringWriter();
+            XMLWriter writer = new XMLWriter(stringWriter, outputFormat);
+            writer.write(document.getRootElement());
+            writer.close();
+            System.out.println(stringWriter.toString().trim());
+            return stringWriter.toString().trim();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return result;
+        return null;
     }
+	
+	private static List<Field> getDeclaredFields(Class<?> clazz){	
+		List<Field> list = new ArrayList<Field>();
+		for(Class<?> clazzObj =clazz; clazzObj!=Object.class; clazzObj = clazzObj.getSuperclass()){
+			Field[] declaredFields = clazzObj.getDeclaredFields();
+			for (Field field : declaredFields) {
+				list.add(field);
+			}
+		}
+		return list;
+	}
 }

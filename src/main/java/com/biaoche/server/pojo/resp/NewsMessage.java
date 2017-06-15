@@ -2,13 +2,7 @@ package com.biaoche.server.pojo.resp;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 
-
-@XmlRootElement(name = "xml")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class NewsMessage extends BaseMessage{
 	//图文消息个数,限制为10条以内
 	private int ArticleCount;
