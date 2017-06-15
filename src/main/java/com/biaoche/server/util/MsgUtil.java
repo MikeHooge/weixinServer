@@ -14,6 +14,7 @@ import org.dom4j.io.XMLWriter;
 
 import com.biaoche.server.pojo.resp.BaseMessage;
 
+
 /**
  * 消息处理工具类
  * 
