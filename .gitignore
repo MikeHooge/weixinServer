@@ -28,3 +28,7 @@ target/
 .classpath
 .project
 .externalToolBuilders/
+
+#idea project file
+.idea/
+weixinServer.iml
