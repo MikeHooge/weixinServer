@@ -12,7 +12,7 @@ public class PageController {
 	}
 	@RequestMapping("/index")
 	public String index(){
-		return "index";
+		return "index-menu";
 	}
 	@RequestMapping("/header")
 	public String header(){
