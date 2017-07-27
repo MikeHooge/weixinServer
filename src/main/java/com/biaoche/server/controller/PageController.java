@@ -12,14 +12,18 @@ public class PageController {
 	}
 	@RequestMapping("/index")
 	public String index(){
+		return "index";
+	}
+	@RequestMapping("/index-top")
+	public String indexTops(){
+		return "index-frame";
+	}
+	@RequestMapping("/index-menu")
+	public String indexMenu(){
 		return "index-menu";
 	}
-	@RequestMapping("/header")
-	public String header(){
-		return "header";
-	}
-	@RequestMapping("/flot")
-	public String flot(){
-		return "flot";
+	@RequestMapping("/editor")
+	public String editor(){
+		return "editor";
 	}
 }

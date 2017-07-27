@@ -1,6 +1,6 @@
-package com.biaoche.server.service;
+package com.biaoche.server.service.wchart;
 
-import com.biaoche.server.pojo.ReceiveMessage;
+import com.biaoche.server.pojo.req.ReceiveMessage;
 
 public interface ReceiveService {
 	/**

@@ -1,4 +1,4 @@
-package com.biaoche.server.pojo;
+package com.biaoche.server.pojo.req;
 
 import java.util.Date;
 

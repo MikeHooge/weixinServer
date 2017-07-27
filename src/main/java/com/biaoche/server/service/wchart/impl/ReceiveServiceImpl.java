@@ -1,12 +1,13 @@
-package com.biaoche.server.service.impl;
+package com.biaoche.server.service.wchart.impl;
 
 import java.util.Date;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.biaoche.server.pojo.ReceiveMessage;
+import com.biaoche.server.pojo.req.ReceiveMessage;
 import com.biaoche.server.pojo.resp.TextMessage;
-import com.biaoche.server.service.ReceiveService;
+import com.biaoche.server.service.wchart.ReceiveService;
 import com.biaoche.server.util.MsgUtil;
 
 /**
@@ -18,6 +19,7 @@ import com.biaoche.server.util.MsgUtil;
 
 @Service
 public class ReceiveServiceImpl implements ReceiveService {
+	private static Logger logger = Logger.getLogger(ReceiveServiceImpl.class);
 
 	@Override
 	public String dealReceiveMsg(ReceiveMessage message) {

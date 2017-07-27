@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.biaoche.server.pojo.ReceiveMessage;
-import com.biaoche.server.service.ReceiveService;
+import com.biaoche.server.pojo.req.ReceiveMessage;
+import com.biaoche.server.service.wchart.ReceiveService;
 import com.biaoche.server.util.SignUtil;
 
 @RestController
