@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.biaoche.server.commons.Page;
+import com.biaoche.server.commons.WebResult;
 import com.biaoche.server.dao.dao.OperUsersMapper;
 import com.biaoche.server.pojo.entity.OperUsers;
+import com.biaoche.server.pojo.entity.OperUsersExample;
 import com.biaoche.server.service.page.UserService;
 
 @Service
@@ -18,8 +21,12 @@ public class UserServiceImpl implements UserService {
 	private OperUsersMapper userMapper;
 
 	@Override
-	public List<OperUsers> getUserList() {
-		return userMapper.selectByExample(null);
+	public WebResult getUserListByPage(int pageIndex,int pageSize) {
+		Page<OperUsers> page = new Page<>(pageIndex, pageSize);
+		OperUsersExample example = new OperUsersExample();
+		example.setPage(page);
+		List<OperUsers> select = userMapper.selectByExample(example);
+		return WebResult.getSuccessResult(select, page.getCount());
 	}
 
 }

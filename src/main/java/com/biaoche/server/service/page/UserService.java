@@ -1,14 +1,12 @@
 package com.biaoche.server.service.page;
 
-import java.util.List;
-
-import com.biaoche.server.pojo.entity.OperUsers;
+import com.biaoche.server.commons.WebResult;
 
 public interface UserService {
 	/**
-	 * 获取所有记录
+	 * 获取所有记录(分页)
 	 * @return
 	 */
-	List<OperUsers> getUserList();
+	WebResult getUserListByPage(int pageIndex,int pageSize);
 
 }

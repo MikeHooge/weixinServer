@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class OperUsersExample {
+import com.biaoche.server.commons.PageExample;
+
+public class OperUsersExample extends PageExample {
     protected String orderByClause;
 
     protected boolean distinct;
