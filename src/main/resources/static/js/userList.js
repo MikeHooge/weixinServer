@@ -11,7 +11,7 @@ layui.use(['paging', 'form'], function() {
 
     paging.init({
         openWait: true,
-        url: '/users', //地址
+        url: '/weixinServer/users', //地址
 		elem: '#content', //内容容器
 		params: { //发送到服务端的参数
 		},

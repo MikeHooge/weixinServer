@@ -64,7 +64,7 @@ layui.config({
         elem: '#admin-navbar-side',
         cached: true,
         //data: navs
-		url: '/menuList'
+		url: '/weixinServer/menuList'
     });
     //渲染navbar
     navbar.render();

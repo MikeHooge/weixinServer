@@ -2,13 +2,11 @@ package com.biaoche.server.util.http;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -19,7 +17,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import org.junit.Test;
 import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -171,21 +168,4 @@ public class HttpClientUtil {
 		}
 		return true;
 	}
-	
-	
-	
-	@Test
-	public void test(){
-		String access_token="V3x6g64cRvKyUGg9_FjJYWnM_gSDN3DjZiNt6to9COO4FRILRKBI7LFz71kBiG1uWhbn3YKmyLuPdcyP2JpH9OSabj7lqXG7uQTLyGid9jroYzByHmktArrahLfYMRcYQINjABALDI";
-		Map<String, Object> params = new HashMap<>();
-//		params.put("grant_type", "client_credential");
-//		params.put("appid", "wx0acdc62d5e945ca8");
-//		params.put("secret", "e9c4b9458cd42ac1510e43b136f11a66");
-		params.put("access_token", access_token);
-//		String url = "https://api.weixin.qq.com/cgi-bin/token";
-		String url = "https://api.weixin.qq.com/cgi-bin/getcallbackip";
-		String sendGet = HttpClientUtil.httpGet(url, params, "UTF-8");
-		System.out.println(sendGet);
-	}
-	
 }
